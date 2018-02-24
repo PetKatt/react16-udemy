@@ -5,15 +5,26 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
-	state = {
-		persons: [
-			{ id:"qwe4764", name: "Max", age: 28 },
-			{ id:"dsa3125", name: "Manu", age: 29 },
-			{ id:"csa3124", name: "Stephanie", age: 26 }
-		],
-    showPersons: false
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      persons: [
+        { id:"qwe4764", name: "Max", age: 28 },
+        { id:"dsa3125", name: "Manu", age: 29 },
+        { id:"csa3124", name: "Stephanie", age: 26 }
+      ],
+      showPersons: false
+    };
+    console.log("[App.js] Inside constructor", props); 
+  }
 
+  componentWillMount() {
+    console.log("[App.js] Inside componentWillMount()");
+  }
+
+  componentDidMount() {
+    console.log("[App.js] Inside componentDidMount()");
+  }
 	/*switchNameHandler = (name) => {
 		// DON'T DO THIS: this.state.persons[0].name = "Maksimilian";
 		this.setState({
@@ -56,6 +67,7 @@ class App extends Component {
 
   render() {
     let persons = null;
+    console.log("[App.js] Inside render()");
 
     if (this.state.showPersons) {
       persons = <Persons 
