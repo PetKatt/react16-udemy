@@ -1,17 +1,37 @@
 import React, { Component } from "react";
 
 const withClass2 = (WrappedComponent, className) => {
-	// return a stateful component in HOC
-	return class extends Component {
+	// Using React.forwardRef API  [React 16.3]
+	const WithClass2 = class extends Component {
 		render() {
 			return (
 				<div className={className}>
-					<WrappedComponent {...this.props} />
+					<WrappedComponent ref={this.props.forwardedRef} {...this.props} />
 				</div>
 			);
 		}
 	};
+
+	return React.forwardRef((props, ref) => {
+		return <WithClass2 {...props} forwardedRef={ref} />
+	});
 };
+
+// return a stateful component in HOC
+/*
+	const withClass2 = (WrappedComponent, className) => {	
+		return class extends Component {
+			render() {
+				return (
+					<div className={className}>
+						<WrappedComponent {...this.props} />
+					</div>
+				);
+			}
+		};
+	};
+*/
+
 
 // return a functional component in HOC
 /*
