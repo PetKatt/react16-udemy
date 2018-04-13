@@ -17,6 +17,11 @@ class Person extends Component {
 		console.log("[Person.js] Inside componentWillMount()");
 	}
 
+	static getDerivedStateFromProps(nextProps, prevState) {
+    console.log("[UPDATE Person.js] Inside getDerivedStateFromProps", nextProps, prevState);
+    return prevState;
+  }
+
 	componentDidMount() {
 		console.log("[Person.js] Inside componentDidMount()");
 		if ( this.props.position === 1) {
